@@ -1,0 +1,39 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "whats"
+version = "0.0.1"
+description = "Analisis de un grupo de Whatsapp"
+authors = [
+  { name = "CosmicObservatory" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    
+]
+dependencies = [
+    "pip",
+    "python-dotenv",
+    "regex>=2026.9.10",
+    "ruff",
+    "wordcloud>=1.9.6",
+]
+requires-python = "~=3.14.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["whats"]
+include = ["pyproject.toml", "whats/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["whats"]
+force-sort-within-sections = true
+
