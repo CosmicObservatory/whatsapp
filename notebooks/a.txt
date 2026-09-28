@@ -1,0 +1,71 @@
+search_names = []
+print(history_26['Text'])
+for v in history_26['Text'].copy():
+    for k in v:
+        x = re.findall(r"(@~)", k)
+        if len(x)>1:
+            m = k.split("@~")
+            search_names += m[1:]
+s_names = set(search_names)
+# print(search_names)
+print(s_names)
+nom_id = np.random.choice(100, len(s_names), replace=False)
+nw_id = {}
+
+j = 0
+nw_id['~🌮'] = f"N{int(nom_id[0])}"
+nw_id['.M'] = f"N{int(nom_id[1])}"
+nw_id['LD'] = f"N{int(nom_id[2])}"
+# print(nw_id)
+
+sl_names = list(s_names)
+j = 3
+for l in sl_names:
+    lc = regex.sub(r"\p{Emoji_Presentation}","", l)
+    v = 0
+    for k in nw_id.keys():
+        # if k=='LD':
+            # print(l,k, regex.match(k, l))
+        if regex.match(lc, k):
+            print("A", l,"B", k)
+            v+= 1
+            if k=="LD":
+                print("LDAAAA", v)
+            break
+    # print(l)
+    if l == "LD y @ID71 por el apoyo con la logística y ":
+        # print(regex.match("LD", "LD y @ID71 por el apoyo con la logística y "))
+        print(v)
+    if v==0:
+        nw_id[lc] = f"N{int(nom_id[j])}"
+        j +=1
+
+print(nw_id)
+
+
+nw_id = {'~🌮': 'N76', '.M': 'N51', 'LD': 'N53', 'Tomy ': 'N72', 'Airam  ': 'N86', 'Alejandra Isasi ': 'N81', 'Margoth Gomez, ': 'N35', 'Edna ': 'N12',
+         'Karla': 'N99', 'Jorge Avila Bringas': 'N23', 'ElDiego ': 'N40', 'Juan Soufflee': 'N94', 'Manu': 'N64', 'Sara Isabel ': 'N31',
+         'Ap Chaparro ': 'N24', 'Yulissa García': 'N29', 'Rosa Bustamante, ': 'N10', 'Victor, ': 'N18',
+         'Sastré': 'N5', 'Victor Cervantes López ': 'N48', 'Alexa ': 'N82', 'Elías  ': 'N8'}
+
+
+value = []
+print(history_26)
+v0 = history_26['Text']
+for name in nw_id.keys():
+    q = []
+    for v in v0:
+        line = []
+        for lv in v:
+            print("A", lv)
+            try:
+                an_line = lv.replace(name, nw_id[name])
+                line.append(an_line)
+            except:
+                continue
+        if len(v) != len(line):
+            print(v, line)
+        q.append(line)
+    d0 = q.copy()
+history_26['Text'] = d0.copy()
+history_26
